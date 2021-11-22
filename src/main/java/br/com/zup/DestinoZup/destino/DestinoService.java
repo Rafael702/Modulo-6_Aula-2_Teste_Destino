@@ -1,9 +1,9 @@
 package br.com.zup.DestinoZup.destino;
 
 import br.com.zup.DestinoZup.categoria.CategoriaRepository;
+import br.com.zup.DestinoZup.destino.exceptions.RegiaoNaoEncontradaException;
 import br.com.zup.DestinoZup.regiao.RegiaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,7 +21,7 @@ public class DestinoService {
 
     public Destino salvarDestino(Destino destino){
         if(!regiaoRepository.existsById(destino.getRegiao().getNome())){
-            throw new RuntimeException("Região não existe");
+            throw new RegiaoNaoEncontradaException();
         }
 
         return destinoRepository.save(destino);
