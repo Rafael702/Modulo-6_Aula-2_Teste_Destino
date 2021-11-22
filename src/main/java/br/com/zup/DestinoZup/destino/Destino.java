@@ -13,13 +13,14 @@ public class Destino {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Regiao regiao;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     private List<Categoria> categorias;
 
     public Destino() {
     }
+
 
     public int getId() {
         return id;
